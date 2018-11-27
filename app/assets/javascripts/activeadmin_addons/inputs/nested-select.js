@@ -151,11 +151,15 @@ var initializer = function() {
 
       if (!!parent) {
         var parentSelectorId = '#' + model + '_' + parent;
+	    if (!$(parentSelectorId).length) {
+	       parentSelectorId = container.find('*[id*='+ parent +']')[0];
+	      }
         var parentSelector = $(parentSelectorId)[0];
 
         $(parentSelector).on('select2:select', setParentValue);
         $(parentSelector).on('select2:unselect', setParentValue);
       }
+
     });
   }
 };
